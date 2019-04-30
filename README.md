@@ -13,7 +13,7 @@ A Demo Project to test sealed secret in AKS, this project includes the Terraform
   
 1. Create and Azure DevOps repository/GitHub and push this repository to yours.
   
-2. Clone this repository and open the IAAC folder (We will create the AKS (Azure Kubernetes Services), ACR (Azure Container Registry) and EventHub on Azure using Terraform).
+2. Clone this repository and open the IAAC/terraform folder (We will create the AKS (Azure Kubernetes Services), ACR (Azure Container Registry) and EventHub on Azure using Terraform).
 
 3. Fill the values on the terraform.tfvars and secrets.tfvars (I am using secrets.tfvars to be blocked by gitignore).
 
