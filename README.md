@@ -36,7 +36,7 @@ A Demo Project to test sealed secret in AKS, this project includes the Terraform
 9. Go to Azure DevOps, create a build pipeline and use the file azure-pipelines.yml in the calculator project folder
  
 10. Go to Release pipeline in Azure DevOps and create the Release steps (see the picture below about how to create everything).
-![alt text](https://github.com/dansemedo/sealedsecret-demo/docs/releasepipeline.png "Azure DevOps Release Pipeline")
+![alt text](https://github.com/dansemedo/sealedsecret-demo/tree/master/docs/releasepipeline.png "Azure DevOps Release Pipeline")
   
 11. Follow the instructions on https://github.com/bitnami-labs/sealed-secrets to configure your Sealed Secret controller in you AKS Cluster and KUBESEAL in your local machine/Azure DevOps agent if you wish.
 
