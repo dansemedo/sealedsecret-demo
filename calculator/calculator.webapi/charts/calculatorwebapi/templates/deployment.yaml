@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calcwebapi
+  labels:
+    app: calcwebapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calcwebapi
+  template:
+    metadata:
+      labels:
+        app: calcwebapi
+    spec:
+      containers:
+      - name: calcwebapi
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+        env:
+            - name: SECRET_HUBNS
+              valueFrom:
+                secretKeyRef:
+                  name: evsecret
+                  key: hubnamespace
+            - name: SECRET_HUBCONN
+              valueFrom:
+                secretKeyRef:
+                  name: evsecret
+                  key: hubconn
+        
+       

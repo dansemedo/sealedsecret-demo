@@ -1,0 +1,10 @@
+fullnameOverride: calcwebapi
+replicaCount: 1
+image:
+  repository: youracrrepository/calcwebapi
+  tag: 88
+  pullPolicy: IfNotPresent
+imagePullSecrets: []
+service:
+  type: LoadBalancer
+  port: 80

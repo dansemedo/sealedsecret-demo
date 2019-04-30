@@ -1,0 +1,36 @@
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+variables:
+  imageName: 'dxacr.azurecr.io/calcwebapi:$(build.buildId)'
+
+steps:
+- script: ls
+  displayName: 'ls'
+
+- script: docker build -f ./calculator.webapi/Dockerfile -t $(imageName) .
+  displayName: 'docker build'
+
+- script: docker login dxacr.azurecr.io -u dxacr -p <your password>
+  displayName: 'docker login'
+
+- script: docker push $(imageName)
+  displayName: 'docker push'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**/*.yaml'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**/*.json'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
